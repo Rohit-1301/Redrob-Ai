@@ -12,10 +12,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source files
 COPY src/ ./src/
+COPY Redrobsdataset/ ./Redrobsdataset/
+COPY app.py .
 COPY run_pipeline_test.py .
 
 # Data volume mounts
-VOLUME ["/app/data", "/app/output"]
+VOLUME ["/app/output"]
 
-# Default command to run the pipeline on dataset
-CMD ["python", "src/pipeline.py", "--input", "/app/data/candidates.jsonl", "--output-dir", "/app/output"]
+# Expose Streamlit port
+EXPOSE 8501
+
+# Default command to run the Streamlit app
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]

@@ -1,13 +1,24 @@
 version: '3.8'
 
 services:
+  streamlit:
+    build: .
+    container_name: redrob_streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./Redrobsdataset:/app/Redrobsdataset
+      - ./output:/app/output
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Default runs the CMD defined in Dockerfile (Streamlit server)
+
   pipeline:
     build: .
     container_name: redrob_pipeline
     volumes:
-      - ./Redrobsdataset:/app/data
+      - ./Redrobsdataset:/app/Redrobsdataset
       - ./output:/app/output
     environment:
       - PYTHONUNBUFFERED=1
-    # Runs the main pipeline. To run tests instead, override the command.
-    command: python -m src.pipeline --input /app/data/candidates.jsonl --output-dir /app/output
+    command: python -m src.pipeline --input /app/Redrobsdataset/candidates.jsonl --output-dir /app/output --format csv
