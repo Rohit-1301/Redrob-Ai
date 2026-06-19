@@ -1,0 +1,82 @@
+# ==============================================================================
+# Production-level .gitignore for RedRob Pipeline Project
+# ==============================================================================
+
+# --- Python Build & Caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual Environments ---
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Environment Secrets & Local Configurations ---
+# Do not commit secrets, private keys, or local environment configurations to git
+.env
+.env.*
+*.env
+secrets.json
+*.key
+*.pem
+*.cert
+
+# --- Jupyter Notebooks (if any) ---
+.ipynb_checkpoints
+
+# --- IDEs / Editors / Project Tools ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.qodo/
+.project
+.pydevproject
+
+# --- Operating System Files ---
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# --- Project-specific Data & Large Dataset Files ---
+# Note: candidates.jsonl (~487MB) is too large for GitHub's 100MB file limit.
+Redrobsdataset/candidates.jsonl
+
+# --- Project Pipeline Outputs ---
+# Output folders contain generated datasets, parquet files, and results.
+# These are generated dynamically by running the pipelines and should not be tracked.
+output/
+output_test/
+
+.qodo/
